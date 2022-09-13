@@ -3,8 +3,12 @@ import re
 import spacy
 from spacy.matcher import PhraseMatcher
 from fuzzywuzzy import process
+import logging
 
 from src.utils_.keyphrase_extraction import extract_keyphrase
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("STANCE_CLASSIFIER")
 
 nlp = spacy.load("en_core_web_sm")
 phrase_matcher = PhraseMatcher(nlp.vocab)
@@ -18,12 +22,14 @@ phrase_matcher = PhraseMatcher(nlp.vocab)
 # TODOs: Pattern based Negation
 # TODOs: Semantic Orientation of an opinion (Claim)
 # TODOs:Group synonyms of 'features', 'targets'
-import os
-print(os.getcwd())
 
 ### SENTIMENT LEXICONS ###
-pos = [w.replace("\n", "") for w in open("../data/lexicon/positive_lex.txt")]
-neg = [w.replace("\n", "") for w in open("../data/lexicon/negative_lex.txt")]
+# pos = [w.replace("\n", "") for w in open("../data/lexicon/positive_lex.txt")]
+# neg = [w.replace("\n", "") for w in open("../data/lexicon/negative_lex.txt")]
+
+# NOTE: Directory from ROOT dir
+pos = [w.replace("\n", "") for w in open("./src/data/lexicon/positive_lex.txt")]
+neg = [w.replace("\n", "") for w in open("./src/data/lexicon/negative_lex.txt")]
 
 ### STANCE: ASPECT-SEMANTIC ORIENTATION ###
 def extract_aspect(sentence, n_gram):
@@ -159,9 +165,6 @@ def compare_stance(ev_unit, adu_target):
     return str("PRO") if score > 0 else str("CON")
 
 ### TEST STATEMENTS ###
-
-# TODOs: Unit Tests
-
 id = random.randint(0, 1000)
 claim =  nlp("I do not believe abortion should be legal")
 
@@ -173,7 +176,6 @@ test_2_aspect = " ".join(i for i in extract_keyphrase(test_2, n_kp=1))
 
 test_3 = "These simple ideas and techniques could help both you and your lover enjoy sex. Think beyond the thrust."
 
-print(test_1, sentence_stance(test_1, test_1_aspect), test_1_aspect)
-print(test_2, compare_stance(test_2, test_1_aspect), test_2_aspect)
-
-
+logger.info("[Initialised ... ]")
+logger.info(f"[Test Stance ... ] "
+            f"\n {test_1}, {sentence_stance(test_1, test_1_aspect)}, {test_1_aspect}")
