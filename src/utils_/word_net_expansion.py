@@ -6,7 +6,8 @@ def expand_query(query):
     synonyms = []
 
     count = 0
-    for _ in query.split():
+    #for _ in query.split():
+    for _ in query:
         for syn in wordnet.synsets(_):
             for l in syn.lemmas():
                 if (count < 3):

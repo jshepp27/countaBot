@@ -24,12 +24,12 @@ phrase_matcher = PhraseMatcher(nlp.vocab)
 # TODOs:Group synonyms of 'features', 'targets'
 
 ### SENTIMENT LEXICONS ###
-# pos = [w.replace("\n", "") for w in open("../data/lexicon/positive_lex.txt")]
-# neg = [w.replace("\n", "") for w in open("../data/lexicon/negative_lex.txt")]
+pos = [w.replace("\n", "") for w in open("../data/lexicon/positive_lex.txt")]
+neg = [w.replace("\n", "") for w in open("../data/lexicon/negative_lex.txt")]
 
 # NOTE: Directory from ROOT dir
-pos = [w.replace("\n", "") for w in open("./src/data/lexicon/positive_lex.txt")]
-neg = [w.replace("\n", "") for w in open("./src/data/lexicon/negative_lex.txt")]
+# pos = [w.replace("\n", "") for w in open("./src/data/lexicon/positive_lex.txt")]
+# neg = [w.replace("\n", "") for w in open("./src/data/lexicon/negative_lex.txt")]
 
 ### STANCE: ASPECT-SEMANTIC ORIENTATION ###
 def extract_aspect(sentence, n_gram):
