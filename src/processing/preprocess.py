@@ -99,6 +99,7 @@ def main():
     file_name = "cmv_processed"
     fout = open(f"./src/data/{file_name}.jsonl", "w")
 
+    # Handel Blank Arguments. Repeat Claims
     # TODOs: Sentence Segment prior
     # TODOs: Tokenize prior
     with tqdm(total=(len(args))) as pbar:
