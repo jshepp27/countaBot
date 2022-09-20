@@ -3,6 +3,7 @@ import spacy
 import uuid
 from time import time
 from functools import wraps
+from nltk.tokenize import sent_tokenize, word_tokenize
 import re
 
 nlp = spacy.load("en_core_web_sm")
@@ -10,11 +11,19 @@ nlp = spacy.load("en_core_web_sm")
 import os
 os.path.join(os.path.dirname(__file__))
 
-def sentences_segment(doc):
-    return [i for i in re.split(r'(?<=[^A-Z].[.?]) +(?=[A-Z])', doc)]
-
 def tokeniser(doc):
-    return re.findall(r"\w+(?:'\w+)?|[^\w\s]", doc)
+    doc = re.sub(r'\.(?=[^ \W\d])', '. ', doc)
+    return word_tokenize(doc)
+
+def sentences_segment(doc):
+    return sent_tokenize(doc)
+
+
+# def sentences_segment(doc):
+#     return [i for i in re.split(r'(?<=[^A-Z].[.?]) +(?=[A-Z])', doc)]
+#
+# def tokeniser(doc):
+#     return re.findall(r"\w+(?:'\w+)?|[^\w\s]", doc)
 
 def paragraphs(document):
     start = 0

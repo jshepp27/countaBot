@@ -37,13 +37,13 @@ class ElasticDB(object):
 
         logger.info('Added document id %s' % response["_id"])
 
-    def bulk_add(self, index_name, source, iterator, chunk_size, len_):
+    def bulk_add(self, file, index_name, source, iterator, chunk_size, len_):
         
         errors_before_interrupt = 5
         successes = 0
         errors_count = 0
         
-        for ok, result in parallel_bulk(self.es, iterator(idx=index_name, source=source, len_=len_), chunk_size=chunk_size, request_timeout=60*3):
+        for ok, result in parallel_bulk(self.es, iterator(file=file, idx=index_name, source=source, len_=len_), chunk_size=chunk_size, request_timeout=60*3):
             if ok is not True:
                 logger.error('Failed to import data')
                 logger.error(str(result))
