@@ -51,7 +51,7 @@ class ElasticDB(object):
         errors_count = 0
 
         with tqdm(total=(len(files)), position=0, leave=True):
-            for ok, result in parallel_bulk(self.es, iterator(files=files, idx=index_name, generator=generator, source=source), chunk_size=chunk_size, request_timeout=60*3):
+            for ok, result in parallel_bulk(self.es, iterator(files=files, idx=index_name, generator=generator, source=source, len_=len_), chunk_size=chunk_size, request_timeout=60*3):
                 if ok is not True:
                     logger.error('Failed to import data')
                     logger.error(str(result))
