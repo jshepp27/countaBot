@@ -1,1 +1,1 @@
-export PYTHONPATH="/Users/joshua.sheppard/PycharmProjects/countaBot/"
+export PYTHONPATH=/Users/joshua.sheppard/PycharmProjects/countaBot/

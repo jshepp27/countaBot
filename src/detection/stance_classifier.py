@@ -13,6 +13,9 @@ logger = logging.getLogger("STANCE_CLASSIFIER")
 nlp = spacy.load("en_core_web_sm")
 phrase_matcher = PhraseMatcher(nlp.vocab)
 
+import os
+os.path.join(os.path.dirname(__file__))
+
 # TODOs: Package as a Module
 # TODOs: Handle Negation (Polarity shifters)
 # TODOs: Review Unsuperived Approach; Consider adveanced patterns and common-sence knowledge
@@ -24,12 +27,13 @@ phrase_matcher = PhraseMatcher(nlp.vocab)
 # TODOs:Group synonyms of 'features', 'targets'
 
 ### SENTIMENT LEXICONS ###
-# pos = [w.replace("\n", "") for w in open("../data/lexicon/positive_lex.txt")]
-# neg = [w.replace("\n", "") for w in open("../data/lexicon/negative_lex.txt")]
+# NOTE: Retrieved from ROOT dir
+pos = [w.replace("\n", "") for w in open("../data/lexicon/positive_lex.txt")]
+neg = [w.replace("\n", "") for w in open("../data/lexicon/negative_lex.txt")]
 
 # NOTE: Directory from ROOT dir
-pos = [w.replace("\n", "") for w in open("./src/data/lexicon/positive_lex.txt")]
-neg = [w.replace("\n", "") for w in open("./src/data/lexicon/negative_lex.txt")]
+# pos = [w.replace("\n", "") for w in open("./src/data/lexicon/positive_lex.txt")]
+# neg = [w.replace("\n", "") for w in open("./src/data/lexicon/negative_lex.txt")]
 
 ### STANCE: ASPECT-SEMANTIC ORIENTATION ###
 def extract_aspect(sentence, n_gram):
