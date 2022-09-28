@@ -14,7 +14,7 @@ logger = logging.getLogger("PRE-PROCESSOR")
 
 kw_extractor = KeywordExtractor(lan="en", n=5, top=5)
 
-def truncate(data, l=8):
+def truncate(data, l=12):
     data = pd.DataFrame(data)
 
     data_ = []
