@@ -2,6 +2,10 @@ import pytorch_pretrained_bert as ppb
 assert 'bert-large-cased' in ppb.modeling.PRETRAINED_MODEL_ARCHIVE_MAP
 from transformers import AutoModelForSequenceClassification, DistilBertTokenizerFast, pipeline
 
+import os
+path = "/Users/joshua.sheppard/PycharmProjects/countaBot/"
+os.chdir(path)
+
 #Aleternate "..", "." dependent on ipynb vs .py
 saved_path = "./src/models/BERT_adu_classifier/"
 tokenizer = DistilBertTokenizerFast.from_pretrained('distilbert-base-uncased')

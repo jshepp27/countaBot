@@ -13,7 +13,7 @@ deduplication_thresold = 0.9
 deduplication_algo = 'seqm'
 k=5
 
-yake_extractor = KeywordExtractor(lan=language, dedupLim=deduplication_thresold, dedupFunc=deduplication_algo)
+yake_extractor = KeywordExtractor(lan=language, dedupLim=deduplication_thresold, dedupFunc=deduplication_algo, n=4)
 
 def yake_extract_keyphrase(sentence, k=5):
 

@@ -5,6 +5,10 @@ from spacy.matcher import PhraseMatcher
 from fuzzywuzzy import process
 import logging
 
+import os
+path = "/Users/joshua.sheppard/PycharmProjects/countaBot"
+os.chdir(path)
+
 from src.utils_.keyphrase_extraction import extract_keyphrase
 
 logging.basicConfig(level=logging.INFO)
@@ -28,12 +32,12 @@ os.path.join(os.path.dirname(__file__))
 
 ### SENTIMENT LEXICONS ###
 # NOTE: Retrieved from ROOT dir
-pos = [w.replace("\n", "") for w in open("../data/lexicon/positive_lex.txt")]
-neg = [w.replace("\n", "") for w in open("../data/lexicon/negative_lex.txt")]
+# pos = [w.replace("\n", "") for w in open("../data/lexicon/positive_lex.txt")]
+# neg = [w.replace("\n", "") for w in open("../data/lexicon/negative_lex.txt")]
 
 # NOTE: Directory from ROOT dir
-# pos = [w.replace("\n", "") for w in open("./src/data/lexicon/positive_lex.txt")]
-# neg = [w.replace("\n", "") for w in open("./src/data/lexicon/negative_lex.txt")]
+pos = [w.replace("\n", "") for w in open("./src/data/lexicon/positive_lex.txt")]
+neg = [w.replace("\n", "") for w in open("./src/data/lexicon/negative_lex.txt")]
 
 ### STANCE: ASPECT-SEMANTIC ORIENTATION ###
 def extract_aspect(sentence, n_gram):

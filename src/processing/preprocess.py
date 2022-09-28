@@ -1,8 +1,10 @@
 import json
 import pandas as pd
 import logging
-
+import os
 from src.detection.stance_classifier import sentence_stance
+
+#from src.detection.stance_classifier import sentence_stance
 from yake import KeywordExtractor
 from tqdm import tqdm
 from src.utils_.utils import sentences_segment
@@ -10,9 +12,9 @@ from src.utils_.utils import sentences_segment
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("PRE-PROCESSOR")
 
-kw_extractor = KeywordExtractor(lan="en", n=3, top=5)
+kw_extractor = KeywordExtractor(lan="en", n=5, top=5)
 
-def truncate(data, l=5):
+def truncate(data, l=8):
     data = pd.DataFrame(data)
 
     data_ = []
@@ -25,7 +27,7 @@ def truncate(data, l=5):
             "id": i["id"],
             "claim": i["claim"],
             "argument": " ".join(i for i in truncated_args),
-            "counter": " ".join(i for i in truncated_counters)
+            "tgt_counter": " ".join(i for i in truncated_counters)
         })
 
     return data_
@@ -87,7 +89,7 @@ def main():
 
     ### EXTRACT ASPECTS ###
     arg_aspects = process_aspects(args, key="argument")
-    counter_aspects = process_aspects(args, key="counter")
+    counter_aspects = process_aspects(args, key="tgt_counter")
 
     logger.info(f"[{len(arg_aspects)} Keyphrases Processed]")
 
@@ -108,8 +110,8 @@ def main():
                 fout.write(json.dumps({
                     "id": i["id"],
                     "claim": i["claim"],
-                    "argument": {"argument": i["argument"], "arg_keyphrases": j, "arg_stance": k},
-                    "counter": {"counter": i["counter"], "counter_keyphrases": l}
+                    "argument": {"argument": i["argument"], "arg_kp": j, "arg_stance": k},
+                    "tgt_counter": {"tgt_counter": i["tgt_counter"], "counter_kp": l}
                 }))
 
                 fout.write("\n")
