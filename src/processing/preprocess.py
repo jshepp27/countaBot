@@ -7,7 +7,7 @@ from src.detection.stance_classifier import sentence_stance
 #from src.detection.stance_classifier import sentence_stance
 from yake import KeywordExtractor
 from tqdm import tqdm
-from src.utils_.utils import sentences_segment
+from src.utils.utils import sentences_segment
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("PRE-PROCESSOR")

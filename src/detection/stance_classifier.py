@@ -9,7 +9,7 @@ import os
 path = "/Users/joshua.sheppard/PycharmProjects/countaBot"
 os.chdir(path)
 
-from src.utils_.keyphrase_extraction import extract_keyphrase
+from src.utils.keyphrase_extraction import extract_keyphrase
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("STANCE_CLASSIFIER")
